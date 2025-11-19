@@ -1,16 +1,42 @@
 {
-  "name": "express",
+  "name": "express-app",
   "version": "1.0.0",
-  "description": "",
-  "type": "module",
+  "main": "api/index.js",
+  "scripts": {
+    "start": "node api/index.js",
+    "abass": "nodemon api/index.js",
+    "dev": "vercel dev"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.0",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "method-override": "^3.0.0",
+    "mongodb": "^6.17.0",
+    "mongoose": "^8.16.4",
+    "morgan": "^1.10.1",
+    "multer": "^2.0.2",
+    "path": "^0.12.7",
+    "serverless-http": "^3.0.0",
+    "vercel": "^44.5.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MRBASSX/express-vercel.git"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "@types/express": "^5.0.0",
-    "express": "^4.18.2"
+  "bugs": {
+    "url": "https://github.com/MRBASSX/express-vercel/issues"
   },
+  "homepage": "https://github.com/MRBASSX/express-vercel#readme",
+  "description": "",
   "devDependencies": {
-    "@types/node": "^22.0.0"
+    "nodemon": "^3.1.10"
   }
 }
