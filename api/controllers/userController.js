@@ -93,7 +93,11 @@ const upload = multer({ storage: storage, fileFilter: fileFilter });
 // Uploading An Image Ends
 
 
+const test = (req,res)=>{
 
+
+  
+}
 
 
 module.exports = { register, login, upload};

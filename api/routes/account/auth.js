@@ -13,4 +13,9 @@ router.get('/profile', authenticateJWT, (req, res) => {
     
 });
 
+router.get('/',(req,res)=>{
+
+    return res.send("Home page")
+})
+
 module.exports = router;

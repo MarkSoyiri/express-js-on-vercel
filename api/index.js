@@ -9,11 +9,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var methodOverride = require('method-override')
 require('dotenv').config();
-const UserRoutes = require('./routes/UserRoutes');
-var indexRouter = require('./routes/Router');
 var indexAuth = require('./routes/account/auth');
-var sportsRoute = require('./routes/sports/sports');
-var formsRoute = require('./routes/account/form');
 var adminRoute = require('./routes/sports/admin');
 var methodOverride = require('method-override')
 const mongose = require('mongoose');
@@ -82,12 +78,10 @@ app.use(express.json()); // <--- VERY IMPORTANT for POST requests with JSON bodi
 
 // Your routes
 
-app.use('/', sportsRoute);
+
 app.use('/', indexAuth);
 app.use('/', adminRoute);
-app.use('/', indexRouter);
-app.use('/', formsRoute);
-app.use("/", UserRoutes);
+
 
 
 // // catch 404 and forward to error handler
