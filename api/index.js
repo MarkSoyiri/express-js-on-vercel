@@ -66,7 +66,7 @@ mongose.connect(process.env.MONGO_URI || process.env.MONGO_URI_OFFLINE).then(() 
 // Or allow only specific origins like this:
 app.use(cors({
 
-  origin:'https://vite-react2-ashen.vercel.app'||'http://localhost:5173',/// change to your frontend URL
+  origin:process.env.CORS_ORIGIN,/// change to your frontend URL
   methods:['GET', 'POST', 'PUT', 'DELETE'],
   credentials:true
   
