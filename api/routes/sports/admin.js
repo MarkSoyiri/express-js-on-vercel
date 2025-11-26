@@ -1,8 +1,6 @@
 const express = require('express');
 const router = express.Router();
-// const { ObjectId } = require('mongodb');
-// const { getDb } = require('../../db'); // Adjust the path as necessary
-const addSport = require('../../models/adminModel');
+
 const { upload } = require('../../controllers/userController');
 
 
