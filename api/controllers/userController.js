@@ -45,7 +45,7 @@ const login = async (req, res) => {
     const token = jwt.sign({ email }, process.env.JWT_SECRET, {
         expiresIn: process.env.JWT_EXPIRES_IN,
     });
-    res.json({ token });
+    res.status(201).json({ token })
 };
 
 // Registration And Login End
@@ -93,11 +93,7 @@ const upload = multer({ storage: storage, fileFilter: fileFilter });
 // Uploading An Image Ends
 
 
-const test = (req,res)=>{
 
-
-  
-}
 
 
 module.exports = { register, login, upload};
