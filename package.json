@@ -1,42 +1,24 @@
 {
-  "name": "express-app",
+  "name": "backend",
   "version": "1.0.0",
-  "main": "api/index.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node api/index.js",
-    "abass": "nodemon api/index.js",
-    "dev": "vercel dev"
-  },
-  "dependencies": {
-    "bcryptjs": "^3.0.2",
-    "cookie-parser": "^1.4.7",
-    "cors": "^2.8.5",
-    "dotenv": "^17.2.0",
-    "ejs": "^3.1.10",
-    "express": "^4.21.2",
-    "jsonwebtoken": "^9.0.2",
-    "method-override": "^3.0.0",
-    "mongodb": "^6.17.0",
-    "mongoose": "^8.16.4",
-    "morgan": "^1.10.1",
-    "multer": "^2.0.2",
-    "path": "^0.12.7",
-    "serverless-http": "^3.0.0",
-    "vercel": "^44.5.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/MRBASSX/express-vercel.git"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/MRBASSX/express-vercel/issues"
-  },
-  "homepage": "https://github.com/MRBASSX/express-vercel#readme",
   "description": "",
-  "devDependencies": {
-    "nodemon": "^3.1.10"
+  "dependencies": {
+    "axios": "^1.13.2",
+    "bcrypt": "^6.0.0",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^9.0.0",
+    "morgan": "^1.10.1",
+    "nodemon": "^3.1.11"
   }
 }
