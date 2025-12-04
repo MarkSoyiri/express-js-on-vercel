@@ -13,7 +13,7 @@ const app = express();
 
 //CORS ALLOWS THE COMMUNICATION OF FRONTEND AND BACKEND
 app.use(cors({
-    origin:process.env.CORS_ORIGIN,
+    origin:process.env.CORS_ORIGIN ||  "http://localhost:5173/",
     methods:['GET', 'POST', 'DELETE', 'PUT'],
     credentials:true
 }));
