@@ -1,38 +1,40 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 const dotenv = require("dotenv");
-const cors =require("cors");
-const userRoute = require("./routes/userRoutes")
-
-dotenv.config()
-
-
-const app = express();
-
-//MIDDLEWARE
-
-//CORS ALLOWS THE COMMUNICATION OF FRONTEND AND BACKEND
-app.use(cors({
-    origin:process.env.CORS_ORIGIN ||  "http://localhost:5173/",
-    methods:['GET', 'POST', 'DELETE', 'PUT'],
-    credentials:true
-}));
+const cookieParser = require("cookie-parser");
+const AuthRoute = require("./routes/authRoutes");
+const MenuRoute = require("./routes/menuRoutes");
+const CartRoute = require("./routes/cartRoutes");
+const OrderRoute = require("./routes/orderRoutes");
+const errorHandler = require("./middleware/errorHandler");
 
 
-app.use(express.json())
-
-
-app.use("/users",userRoute)
+dotenv.config();
+const PORT = process.env.PORT || 5000; 
 
 //CONNECTING TO DATABASE
 mongoose.connect(process.env.MONGO_URI).then(()=>{
-    console.log("connected to mongoDB");
-}).catch((err)=>{
-    console.error("failed to connect to mongoDB :", err);
+    console.log("Connected to MongoDB")
 })
 
-//STRAT SERVER
-const PORT = process.env.PORT;
-app.listen(PORT,()=>{
-    console.log(`Server is running on port: ${PORT}`);
-})
+
+const app = express()
+
+app.use(cors({origin:process.env.CORS_ORIGIN || true, credentials: true }));
+app.use(express.json());
+app.use(cookieParser());
+app.use('/uploads', express.static('uploads'));
+app.use('/', AuthRoute);
+app.use('/', MenuRoute);
+app.use('/', CartRoute);
+app.use('/', OrderRoute);
+
+
+// Error handler
+app.use(errorHandler);
+
+
+app.listen(PORT, ()=>{
+    console.log(`Server is running on Port: ${PORT}`)
+});
