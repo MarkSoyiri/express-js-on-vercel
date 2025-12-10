@@ -21,7 +21,7 @@ mongoose.connect(process.env.MONGO_URI).then(()=>{
 
 const app = express()
 
-app.use(cors({origin:["https://react-shop-project-bootstrap.vercel.app"], credentials: true }));
+app.use(cors({origin:process.env.CORS_ORIGIN || true, credentials: true }));
 app.use(express.json());
 app.use(cookieParser());
 app.use('/uploads', express.static('uploads'));
