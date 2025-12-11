@@ -13,5 +13,9 @@ router.get('/', authM, getOrders);
 router.get('/all', authM, adminM, getAllOrders);
 router.put('/:id', authM, adminM, updateStatus);
 
+router.get('/',(req,res)=>{
+    res.send("Welcome to my Backend")
+})
+    
 
 module.exports = router;

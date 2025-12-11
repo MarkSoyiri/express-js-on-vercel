@@ -3,7 +3,8 @@ const MenuItem = require("../models/MenuItem");
 const list = async (req, res, next) => {
     try{
         const items = await MenuItem.find();
-        res.json(items);
+        if(!items) return res.status(404).json({message:"Item not found"});
+        res.status(200).json(items);
     } catch(err){
         next(err);
     }

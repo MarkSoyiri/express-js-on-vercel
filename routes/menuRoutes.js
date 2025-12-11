@@ -10,4 +10,6 @@ router.post('/', authM, adminM, createItem);
 router.put('/:id', authM, adminM, updateItem);
 router.delete('/:id', authM, adminM, remove);
 
+router.get
+
 module.exports = router;
