@@ -8,44 +8,59 @@ const AuthRoute = require("../routes/authRoutes");
 const MenuRoute = require("../routes/menuRoutes");
 const CartRoute = require("../routes/cartRoutes");
 const OrderRoute = require("../routes/orderRoutes");
-const errorHandler = require("../middleware/errorHandler");
 
 dotenv.config();
 
-// Initialize Express
-const app = express();
+// === FIX 1: Globally cached DB connection ===
+let isConnected = false;
 
-// Database connection (IMPORTANT for Vercel)
-if (!mongoose.connection.readyState) {
-  mongoose.connect(process.env.MONGO_URI).then(() => {
-    console.log("Connected to MongoDB");
-  });
+async function connectDB() {
+  if (isConnected) return;
+
+  const db = await mongoose.connect(process.env.MONGO_URI);
+  isConnected = db.connections[0].readyState === 1;
+
+  console.log("MongoDB Connected");
 }
 
-// CORS
-app.use(cors({
-  origin: "https://react-shop-project-bootstrap.vercel.app",
-  methods: ['GET', 'POST', 'DELETE', 'PUT'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true
-}));
+// === EXPRESS APP ===
+const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
 
-// Routes
-app.use("/user", AuthRoute);
-app.use("/products", MenuRoute);
-app.use("/cart", CartRoute);
-app.use("/order", OrderRoute);
+app.use(
+  cors({
+    origin: ["https://react-shop-project-bootstrap.vercel.app"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
 
-// Root route
-app.get("/", (req, res) => {
-  res.send("welcome to my backend");
+// === ROUTES ===
+app.use("/user", async (req, res, next) => {
+  await connectDB();
+  AuthRoute(req, res, next);
 });
 
-// Error middleware
-app.use(errorHandler);
+app.use("/products", async (req, res, next) => {
+  await connectDB();
+  MenuRoute(req, res, next);
+});
 
-// ❗ IMPORTANT: EXPORT EXPRESS APP FOR VERCEL ❗
+app.use("/cart", async (req, res, next) => {
+  await connectDB();
+  CartRoute(req, res, next);
+});
+
+app.use("/order", async (req, res, next) => {
+  await connectDB();
+  OrderRoute(req, res, next);
+});
+
+app.get("/", (req, res) => {
+  res.send("Backend running on Vercel");
+});
+
+// === IMPORTANT: EXPORT FOR VERCEL ===
 module.exports = app;
