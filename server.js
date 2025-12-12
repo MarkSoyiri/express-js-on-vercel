@@ -20,17 +20,19 @@ mongoose.connect(process.env.MONGO_URI).then(()=>{
 
 
 const app = express()
-app.get("/",(req,res)=>{
-    res.send("welcome to my backend")
-})
+
 app.use(cors({origin: process.env.CORS_ORIGIN, credentials: true }));
 app.use(express.json());
 app.use(cookieParser());
 app.use('/uploads', express.static('uploads'));
 app.use('/user', AuthRoute);
 app.use('/products', MenuRoute);
-app.use('/', CartRoute);
-app.use('/', OrderRoute);
+app.use('/cart', CartRoute);
+app.use('/order', OrderRoute);
+
+app.get("/",(req,res)=>{
+    res.send("welcome to my backend")
+})
 
 
 // Error handler
