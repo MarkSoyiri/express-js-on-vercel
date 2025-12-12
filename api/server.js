@@ -4,11 +4,11 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
 
-const AuthRoute = require("./routes/authRoutes");
-const MenuRoute = require("./routes/menuRoutes");
-const CartRoute = require("./routes/cartRoutes");
-const OrderRoute = require("./routes/orderRoutes");
-const errorHandler = require("./middleware/errorHandler");
+const AuthRoute = require("../routes/authRoutes");
+const MenuRoute = require("../routes/menuRoutes");
+const CartRoute = require("../routes/cartRoutes");
+const OrderRoute = require("../routes/orderRoutes");
+const errorHandler = require("../middleware/errorHandler");
 
 dotenv.config();
 
