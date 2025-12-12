@@ -21,11 +21,11 @@ mongoose.connect(process.env.MONGO_URI).then(()=>{
 
 const app = express()
 
-app.use(cors({origin: process.env.CORS_ORIGIN, methods:['GET', 'POST', 'DELETE', 'PUT'], credentials: true }));
+app.use(cors({origin: "https://react-shop-project-bootstrap.vercel.app", methods:['GET', 'POST', 'DELETE', 'PUT'], credentials: true }));
 app.use(express.json());
 app.use(cookieParser());
 app.use('/uploads', express.static('uploads'));
-app.use('/', AuthRoute);
+app.use('/user', AuthRoute);
 app.use('/products', MenuRoute);
 app.use('/cart', CartRoute);
 app.use('/order', OrderRoute);
