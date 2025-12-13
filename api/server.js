@@ -66,7 +66,7 @@ mongose.connect(process.env.MONGO_URI).then(() => {
 // Or allow only specific origins like this:
 app.use(cors({
 
-  origin: "https://react-shop-project-bootstrap.vercel.app",/// change to your frontend URL
+  origin: process.env.CORS_ORIGIN,/// change to your frontend URL
   methods:['GET', 'POST', 'PUT', 'DELETE'],
   credentials:true
   
