@@ -58,7 +58,7 @@ const getProfile = async (req, res, next) => {
     try {
         res.json(req.user)
     } catch (error) {
-        
+        res.status(401).json({error:err.message});
     }
 }
 
