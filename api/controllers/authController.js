@@ -14,8 +14,8 @@ const register = async (req, res) => {
         if (emailExist) return res.status(401).json({message:"Email is already registered to a User!"});
         if (usernameExist) return res.status(401).json({message:"Username Taken, choose another name!"});
     
-        const salt = await bcrypt.genSalt(10);
-        const hashedPassword = await bcrypt.hash(password, salt );
+        // const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(password, 10);
     
         const newUser = new User({
             username,
