@@ -45,9 +45,9 @@ app.use('/uploads', express.static('uploads'));
 
 // Ensure 'uploads' folder exists
 const uploadDir = path.join(__dirname, '../uploads');
-if (!fs.existsSync(uploadDir)) {
-  fs.mkdirSync(uploadDir);
-}
+// if (!fs.existsSync(uploadDir)) {
+//   fs.mkdirSync(uploadDir);
+// }
 
 
 
