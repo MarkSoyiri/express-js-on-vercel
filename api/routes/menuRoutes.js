@@ -4,11 +4,11 @@ const { list, getItem, createItem, updateItem, remove } = require("../controller
 const authM = require("../middleware/authMiddleware");
 const adminM = require("../middleware/adminMiddleware");
 
-router.get('/', list);
-router.get('/:id', getItem);
-router.post('/', authM, adminM, createItem);
-router.put('/:id', authM, adminM, updateItem);
-router.delete('/:id', authM, adminM, remove);
+router.get('/menu/', list);
+router.get('/menu/:id', getItem);
+router.post('/menu', authM, adminM, createItem);
+router.put('/menu/:id', authM, adminM, updateItem);
+router.delete('/menu/:id', authM, adminM, remove);
 
 
 
