@@ -1,7 +1,7 @@
 const Users = require("../models/User");
 const bcrypt = require('bcrypt');
 const jwt = require("jsonwebtoken");
-// const { signToken } = require('../utils/jwt');
+const multer = require('multer');
 
 
 //REGISTER USER
@@ -53,4 +53,29 @@ const getProfile = async (req, res, next) => {
     }
 }
 
-module.exports = { register, login, getProfile };
+
+// Set up storage for multer
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/'); // Uploads directory
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + path.extname(file.originalname)); // Unique filename
+  }
+});
+
+// File filter (optional, e.g., only images)
+const fileFilter = (req, file, cb) => {
+  const allowedTypes = /jpeg|jpg|png|gif/;
+  const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase());
+  const mimetype = allowedTypes.test(file.mimetype);
+  if (extname && mimetype) {
+    cb(null, true);
+  } else {
+    cb(new Error('Only images are allowed'));
+  }
+};
+
+const upload = multer({ storage: storage, fileFilter: fileFilter });
+
+module.exports = { register, login, getProfile,upload };
