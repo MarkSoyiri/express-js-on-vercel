@@ -47,7 +47,7 @@ const login = async (req, res) => {
 //GET PROFILE
 const getProfile = async (req, res, next) => {
     try {
-        res.json(req.user)
+        res.status(201).json(req.user)
     } catch (error) {
         res.status(401).json({error:err.message});
     }
