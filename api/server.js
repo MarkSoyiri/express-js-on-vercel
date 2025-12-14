@@ -40,14 +40,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Serve uploaded files statically
-app.use('/uploads', express.static('uploads'));
+// // Serve uploaded files statically
+// app.use('/uploads', express.static('uploads'));
 
-// Ensure 'uploads' folder exists
-const uploadDir = path.join(__dirname, '../uploads');
-if (!fs.existsSync(uploadDir)) {
-  fs.mkdirSync(uploadDir);
-}
+// // Ensure 'uploads' folder exists
+// const uploadDir = path.join(__dirname, '../uploads');
+// if (!fs.existsSync(uploadDir)) {
+//   fs.mkdirSync(uploadDir);
+// }
 
 
 

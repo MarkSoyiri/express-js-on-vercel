@@ -9,7 +9,7 @@ router.get('/menu/:id', getItem);
 router.post('/menu', authM, adminM, createItem);
 router.put('/menu/:id', authM, adminM, updateItem);
 router.delete('/menu/:id', authM, adminM, remove);
-router.post('/', upload.single('image'),createItem);
+// router.post('/', upload.single('image'),createItem);
 
 
 

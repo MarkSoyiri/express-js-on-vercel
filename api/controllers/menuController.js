@@ -20,34 +20,16 @@ const getItem = async (req, res, next) => {
     }
 }
 
-const createItem = async (req, res) => {
-  if (!req.file) {
-    return res.status(400).json({ message: 'No file uploaded' });
-  }
+const createItem = async (req, res, next) => {
+    try {
+        const payload = req.body;
+        const item = await  new MenuItem(payload);
+        res.status(201).json(item);
+    } catch (err) {
+        next(err)
+    }
 
-  const imageUrl = `/uploads/${req.file.filename}`;
-
-  try {
-    const item = await MenuItem.create({
-      name: req.body.name,
-      price: req.body.price,
-      image: imageUrl,
-      description:req.body.description
-    });
-
-    await item.save();
-
-    res.status(201).json({
-      message: 'New MenuItem saved!',
-      item: item
-    });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Server error' });
-  }
-};
-
-
+}
 
 const updateItem = async (req, res, next) => {
     try {
