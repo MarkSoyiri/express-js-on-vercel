@@ -11,10 +11,13 @@ const authMiddleware = async (req, res, next) => {
         }
         if (!token) return res.status(401).json({message:'Not authorized, token missing'});
 
-        const decoded = jwt.verify(token,process.env.MY_JWT_TOKEN);
-        req.user = await User.findById(decoded.id).select('-password');
-        if (!req.user) return res.status(401).json({message:'User not found'});
+        jwt.verify(token,process.env.MY_JWT_TOKEN, (err, user) => {
+        if (err) return res.sendStatus(403);
+
+        req.user = user;
         next();
+    });
+       
     } catch (err) {
         return res.status(401).json({message: ' Not authorized, token invalid'});
     };
