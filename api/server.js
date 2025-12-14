@@ -77,10 +77,10 @@ app.use(express.json()); // <--- VERY IMPORTANT for POST requests with JSON bodi
 
 
 // Your routes
-app.use('/user', AuthRoute);
-app.use('/menu', MenuRoute);
-app.use('/cart', CartRoute);
-app.use('/order', OrderRoute);
+app.use('/', AuthRoute);
+app.use('/', MenuRoute);
+app.use('/', CartRoute);
+app.use('/', OrderRoute);
 
 
 app.get('/',(req,res)=>{
