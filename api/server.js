@@ -12,6 +12,7 @@ const AuthRoute = require("./routes/authRoutes")
 const MenuRoute = require("./routes/menuRoutes")
 const CartRoute = require("./routes/cartRoutes")
 const OrderRoute = require("./routes/orderRoutes")
+const AdminRoute = require("./routes/AdminRoute");
 const mongose = require('mongoose');
 const fs = require('fs');
 
@@ -81,6 +82,7 @@ app.use('/', AuthRoute);
 app.use('/', MenuRoute);
 app.use('/', CartRoute);
 app.use('/', OrderRoute);
+app.use('/', AdminRoute);
 
 
 app.get('/',(req,res)=>{
