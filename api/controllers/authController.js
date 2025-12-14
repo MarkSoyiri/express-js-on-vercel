@@ -1,7 +1,7 @@
 const Users = require("../models/User");
 const bcrypt = require('bcrypt');
 const jwt = require("jsonwebtoken");
-const { signToken } = require('../utils/jwt');
+// const { signToken } = require('../utils/jwt');
 
 
 //REGISTER USER
